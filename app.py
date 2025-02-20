@@ -94,6 +94,16 @@ def parse_hand(s: str) -> TapaiHand:
 
 
 def main():
+    st.markdown("""
+    # 多牌チンイツ何切る
+
+    14 枚以上の任意の 1 色手の牌姿からどの牌を切ると広いテンパイがつくれるか計算します。
+
+    ## 使用方法
+
+    以下の入力欄に牌姿を入力してください (e.g. 123334566777889 (15 枚形))。
+    捨て牌の候補, テンパイ形 および テンパイ時の待ちが表示されます。
+    """)
     hand_str = st.text_input(label="牌姿 (14枚以上) を入力", placeholder="123334566777889")
     if hand_str:
         tapai_hand = parse_hand(hand_str)
