@@ -110,7 +110,7 @@ def main():
         st.write(pai_list_to_str_1idx(tapai_hand.pai_list), f"{len(tapai_hand.pai_list)} 枚")
 
         results = tapai_hand.calc_best_sutepai()
-        st.write(results)
+        st.dataframe(results, hide_index=True)
 
 
 if __name__ == "__main__":
