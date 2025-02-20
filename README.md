@@ -4,6 +4,10 @@
 
 主に先のツモ牌がわかる青雲の志イベント向けです。
 
+Streamlit Community Cloud 上でお試しできます。
+
+https://tapainanikiru-seiunn-fans.streamlit.app/
+
 ## ローカル実行方法
 
 ```
