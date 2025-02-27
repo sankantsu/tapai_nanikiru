@@ -20,7 +20,6 @@ class Hand13:
     def __init__(self, pai_list) -> None:
         self.pai_list = pai_list
 
-
     def calc_machi(self) -> list[int]:
         machi = []
         tiles_conv = TilesConverter()
@@ -43,7 +42,7 @@ class Hand13:
 
 class TapaiHand:
     pai_list: list[int]
-    
+
     def __init__(self, pai_list):
         self.pai_list = pai_list
         self.validate()
@@ -80,11 +79,13 @@ class TapaiHand:
             known_sutepai.add(sutepai_tuple)
             machi_list = Hand13(hand_13).calc_machi()
             if machi_list:
-                results.append({
-                    "捨て牌": pai_list_to_str_1idx(sutepai_list),
-                    "13枚形": pai_list_to_str_1idx(hand_13),
-                    "待ち": pai_list_to_str_1idx(machi_list),
-                })
+                results.append(
+                    {
+                        "捨て牌": pai_list_to_str_1idx(sutepai_list),
+                        "13枚形": pai_list_to_str_1idx(hand_13),
+                        "待ち": pai_list_to_str_1idx(machi_list),
+                    }
+                )
         df = pd.DataFrame.from_records(results)
         df = df.sort_values(
             by="待ち",
@@ -113,10 +114,14 @@ def main():
     以下の入力欄に牌姿を入力してください (e.g. 123334566777889 (15 枚形))。
     捨て牌の候補, テンパイ形 および テンパイ時の待ちが表示されます。
     """)
-    hand_str = st.text_input(label="牌姿 (14枚以上) を入力", placeholder="123334566777889")
+    hand_str = st.text_input(
+        label="牌姿 (14枚以上) を入力", placeholder="123334566777889"
+    )
     if hand_str:
         tapai_hand = parse_hand(hand_str)
-        st.write(pai_list_to_str_1idx(tapai_hand.pai_list), f"{len(tapai_hand.pai_list)} 枚")
+        st.write(
+            pai_list_to_str_1idx(tapai_hand.pai_list), f"{len(tapai_hand.pai_list)} 枚"
+        )
 
         results = tapai_hand.calc_best_sutepai()
         st.dataframe(results, hide_index=True)
