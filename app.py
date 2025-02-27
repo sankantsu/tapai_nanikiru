@@ -29,8 +29,6 @@ class Hand13:
         cnt = [0 for i in range(NUM_SUUPAI)]
         for x in self.pai_list:
             cnt[x] += 1
-        print(self.pai_list)
-        print(pai_list_to_str_1idx(self.pai_list), cnt)
 
         for i in range(NUM_SUUPAI):
             # Skip hand using 5 of same tiles
