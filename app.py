@@ -20,11 +20,22 @@ class Hand13:
     def __init__(self, pai_list) -> None:
         self.pai_list = pai_list
 
+
     def calc_machi(self) -> list[int]:
         machi = []
         tiles_conv = TilesConverter()
         agari_calc = Agari()
-        for i in range(9):
+
+        cnt = [0 for i in range(NUM_SUUPAI)]
+        for x in self.pai_list:
+            cnt[x] += 1
+        print(self.pai_list)
+        print(pai_list_to_str_1idx(self.pai_list), cnt)
+
+        for i in range(NUM_SUUPAI):
+            # Skip hand using 5 of same tiles
+            if cnt[i] >= 4:
+                continue
             hand_14_pais = sorted(self.pai_list + [i])
             hand = tiles_conv.string_to_34_array(sou=pai_list_to_str_1idx(hand_14_pais))
             if agari_calc.is_agari(hand):
